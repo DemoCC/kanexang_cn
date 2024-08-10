@@ -22,11 +22,11 @@ export default {
   created() {
     document.title = 'AIChat'
     document.oncontextmenu = function () {
-      // return false
+      return false
     };
     document.onkeydown = function (e) {
       if (e.code === 'F12') {
-        // return false
+        return false
       }
     }
   },
