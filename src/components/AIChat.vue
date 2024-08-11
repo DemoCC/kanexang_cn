@@ -1,12 +1,13 @@
 <template>
   <div class="container" v-if="ready">
     <h1>AIChat</h1>
-    <a-input :style="{width:'70%',height:'40px'}" v-model="text" placeholder="什么都能问哦~" allow-clear/>
+    <a-input :style="{width:'70%',height:'40px',margin:'30px 0'}" v-model="text" placeholder="什么都能问哦~"
+             allow-clear/>
     <a-button :disabled="disableSend" type="primary" size="large" @click="handleSend"
-              :style="{width:'150px',margin:'20px'}">
+              :style="{width:'150px'}">
       发送
     </a-button>
-    <div style="width: 50%;max-height: 400px;overflow: scroll">
+    <div style="width: 50%;max-height: 400px;overflow-x: hidden; overflow-y: scroll">
       <p v-for="item in msgList" :key="item.id" style="color: #7f7f7f">
         {{ '回答：' + item.msg }}
       </p>
@@ -18,7 +19,7 @@
   </div>
   <div class="container" v-if="!ready">
     <h1>AIChat</h1>
-    <a-input :style="{width:'80%',height:'40px'}" v-model="nick" placeholder="你叫什么" allow-clear/>
+    <a-input :style="{width:'80%',height:'40px',margin:'30px 0'}" v-model="nick" placeholder="你叫什么" allow-clear/>
     <a-button type="primary" :loading="loading1" size="large" @click="handleNick"
               :style="{width:'150px',margin:'20px'}">
       确认
@@ -30,13 +31,14 @@
 import axios from "axios";
 import {Input} from '@arco-design/web-vue';
 import {Button} from '@arco-design/web-vue';
+import {Space} from '@arco-design/web-vue';
 
 export default {
   name: 'AiChat',
   components: {
     AInput: Input,
-    AButton: Button
-
+    AButton: Button,
+    ASpace: Space,
   },
   data() {
     return {
@@ -127,16 +129,17 @@ export default {
 
 <style scoped>
 .container {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: calc(100vh - 20%);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 10% 0;
 }
 
 h1 {
+  margin: 0;
   font-size: 4rem;
   font-family: "Times New Roman", serif;
 }
